@@ -1,0 +1,36 @@
+header {
+  background: rgb(194, 0, 152);
+}
+
+header .logo {
+  font-weight: bold;
+}
+
+header nav {
+  justify-self: right;
+  padding: 0.8em;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  float: left;
+
+}
+
+header nav ul li a {
+  padding: 1.5em;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+header nav ul li a:hover {
+  background: rgb(40, 7, 78);
+   border-radius: 4em;
+
+
+}

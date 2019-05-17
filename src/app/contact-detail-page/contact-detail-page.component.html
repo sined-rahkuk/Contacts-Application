@@ -1,0 +1,19 @@
+<h1>Single contact details page</h1>
+
+<!-- <app-contact *ngIf="contactData" [contactData]="contactData"></app-contact>
+<p id='notFoundNotice' class='hidden'>
+  We're sorry, specified contact has not been found!
+
+  Probably, it's deleted or entered id is not valid!
+</p> -->
+
+
+<div *ngIf="contactData; else notFound">
+  <app-contact [contactData]="contactData"></app-contact>
+</div>
+
+<ng-template #notFound>
+  We're sorry, specified contact has not been found!
+
+  Probably, it's deleted or entered id is not valid!
+</ng-template>

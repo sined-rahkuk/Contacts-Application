@@ -1,0 +1,8 @@
+<strong class="label">Contact List</strong>
+
+<button mat-button class="btn btn-primary btn-lg" routerLink="/new-contact">Add Contact</button>
+<ul *ngIf="result">
+  <li *ngFor="let contact of result">
+    <app-contact [contactData]="contact"></app-contact>
+  </li>
+</ul>

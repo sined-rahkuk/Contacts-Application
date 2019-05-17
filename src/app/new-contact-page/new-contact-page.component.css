@@ -1,0 +1,11 @@
+input::placeholder {
+  font-style: italic;
+}
+
+button {
+  margin-top: 2em;
+}
+
+span {
+  font-weight: bold;
+}

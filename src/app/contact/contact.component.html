@@ -1,0 +1,10 @@
+<ul *ngIf="contactData">
+  <li><strong>ID:</strong><span class="id"><span>{{contactData.id}}</span></span></li>
+  <li><strong>First Name:</strong><span>{{contactData.fname}}</span></li>
+  <li><strong>Last Name:</strong><span>{{contactData.lname}}</span></li>
+  <li><strong>Tel:</strong><span>{{contactData.tel}}</span></li>
+  <li *ngIf="contactData.description"><strong>Description: </strong><span>{{contactData.description}}</span></li>
+  <button mat-button class="btn btn-danger" (click)="delete()">Delete</button>
+  <button mat-button class="btn btn-success" (click)="update()">Update</button>
+  <button *ngIf="!alone" mat-button class="btn btn-info" [routerLink]="contactData.id">Detailed</button>
+</ul>

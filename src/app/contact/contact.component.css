@@ -1,0 +1,21 @@
+ ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+ }
+
+ li {
+   margin: 0.5em;
+
+ }
+
+ span {
+   padding: 0.3em;
+ }
+
+ span.id {
+   font-style: italic;
+ }
+ ul button {
+   margin: 0.7em;
+ }
