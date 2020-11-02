@@ -14,10 +14,17 @@ import { ContactDBService } from './contact-db.service';
 import { ContactComponent } from './contact/contact.component';
 import { NewContactPageComponent } from './new-contact-page/new-contact-page.component';
 import { ContactDetailPageComponent } from './contact-detail-page/contact-detail-page.component';
-import { Location } from '@angular/common';
-// import { AboutComponent } from './about/about.component';
-// import { ContactComponent } from './contact/contact.component';
-// import { HomeComponent } from './home/home.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {
+  MatPaginatorModule,
+  MatSortModule,
+  MatTableModule,
+  MatFormFieldModule
+} from '@angular/material';
+import { ContactsTableComponent } from './contacts-table/contacts-table.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,18 +36,27 @@ import { Location } from '@angular/common';
     NotExistingPageComponent,
     ContactComponent,
     NewContactPageComponent,
-    ContactDetailPageComponent
+    ContactDetailPageComponent,
+    ContactsTableComponent
+
     // AboutComponent,
     // ContactComponent,
     // HomeComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule
   ],
+  exports: [],
   providers: [ContactDBService],
   bootstrap: [AppComponent]
 })

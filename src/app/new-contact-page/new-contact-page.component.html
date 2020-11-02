@@ -1,16 +1,21 @@
-<span>Specific Id?</span>
-<input type="text" class="form-control" id="name" required [(ngModel)]="contact.id" name="contact" placeholder="Leave it empty to generate id for you">
+<div *ngIf="contact" (keyup)="onKey($event)">
+  <span>Specific Id?</span>
+  <input type="text" class="form-control" id="name" required [(ngModel)]="contact.id" name="contact"
+    placeholder="Leave it empty to generate id for you">
 
-<span>First Name:</span>
-<input type="text" class="form-control" id="name" required [(ngModel)]="contact.fname" name="contact">
+  <span>First Name:</span>
+  <input type="text" class="form-control" id="name" required [(ngModel)]="contact.fname" name="contact">
 
-<span>Last Name:</span>
-<input type="text" class="form-control" id="name" required [(ngModel)]="contact.lname" name="contact">
+  <span>Last Name:</span>
+  <input type="text" class="form-control" id="name" required [(ngModel)]="contact.lname" name="contact">
 
-<span>Tel:</span>
-<input type="text" class="form-control" id="name" required [(ngModel)]="contact.tel" name="contact">
+  <span>Tel:</span>
+  <input type="text" class="form-control" id="name" required [(ngModel)]="contact.tel" name="contact">
 
-<span>Description:</span>
-<input type="text" class="form-control" id="name" [(ngModel)]="contact.description" name="contact">
+  <span>Description:</span>
+  <input type="text" class="form-control" id="name" [(ngModel)]="contact.description" name="contact">
 
-<button mat-button (click)="submitButton()">Submit</button>
+  <button mat-button (click)="submitButton()" id="submitContact"
+    class="hidden btn btn-outline-warning btn-lg">Submit</button>
+
+</div>

@@ -9,3 +9,7 @@ button {
 span {
   font-weight: bold;
 }
+
+.hidden {
+  display: none;
+}

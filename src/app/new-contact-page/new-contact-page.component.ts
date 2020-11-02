@@ -3,6 +3,7 @@ import { Contact } from '../contact-model/contact-interface';
 import { ContactDBService } from '../contact-db.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import * as hash from 'object-hash';
 @Component({
   selector: 'app-new-contact-page',
   templateUrl: './new-contact-page.component.html',
@@ -17,6 +18,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NewContactPageComponent implements OnInit {
   // name = 'HELL';
   contact: Contact;
+  // valid = false;
+  initialChecksum: string;
+  curChecksum: string;
+
   constructor(
     private dbSvc: ContactDBService,
     private router: Router,
@@ -36,12 +41,15 @@ export class NewContactPageComponent implements OnInit {
         .getContactById(this.route.snapshot.params.id)
         .toPromise()
         .then(contact => {
-          console.log('contact fetched from db:');
+          // console.log('contact fetched from db');
           this.contact = contact;
+          this.initialChecksum = hash(this.contact);
+          console.log(this.initialChecksum);
         })
         .catch(err => console.error(err));
     } else {
       this.contact = new Contact();
+      this.initialChecksum = hash(this.contact);
     }
   }
   submitButton() {
@@ -49,20 +57,42 @@ export class NewContactPageComponent implements OnInit {
     // console.log('contact is as follows: ');
     // console.log(this.contact);
 
-    if (this.contact.fname && this.contact.lname && this.contact.tel) {
-      console.log('succeed!');
+    console.log('succeed!');
 
-      // Am I creating the brand new contact
-      // or just updating existing one?
-      if (this.route.snapshot.params.id) {
-        this.dbSvc
-          .updateContact(this.contact)
-          .toPromise()
-          .then(() => this.router.navigateByUrl('/'));
-      } else {
-        this.dbSvc.saveContact(this.contact);
-        this.router.navigateByUrl('/');
-      }
+    // Am I creating the brand new contact
+    // or just updating existing one?
+    if (this.route.snapshot.params.id) {
+      this.dbSvc
+        .updateContact(this.contact)
+        .toPromise()
+        .then(() => this.router.navigateByUrl('/'));
+    } else {
+      this.dbSvc.saveContact(this.contact);
+      this.router.navigateByUrl('/');
     }
+  }
+
+  onKey($event) {
+    this.curChecksum = hash(this.contact);
+    console.log(
+      `initial: ${this.initialChecksum}\ncurrent: ${this.curChecksum}`
+    );
+
+    if (
+      this.contact.fname.length &&
+      this.contact.lname.length &&
+      this.contact.tel.length
+    ) {
+      if (this.curChecksum !== this.initialChecksum) {
+        // this.valid = true;
+        document.getElementById('submitContact').classList.remove('hidden');
+      } else {
+        document.getElementById('submitContact').classList.add('hidden');
+      }
+    } else {
+      document.getElementById('submitContact').classList.add('hidden');
+    }
+
+    // this.valid = false;
   }
 }
